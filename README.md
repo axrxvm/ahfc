@@ -1,6 +1,6 @@
 # Aarav HyperFortress Cipher (AHFC)
 
-**Version: AHFCv1**  
+**Version: AHFCv1.2.0**  
 Aarav HyperFortress Cipher (AHFC) is a robust and secure file encryption tool designed for local file protection with multiple security tiers. It uses modern cryptographic primitives (Argon2, AES-GCM, HMAC) and compression to provide integrity, confidentiality, and performance.
 
 [![NPM Version](https://img.shields.io/npm/v/ahfc.svg)](https://www.npmjs.com/package/ahfc)  
@@ -37,8 +37,9 @@ npm install ahfc
 
 ---
 
-## 🚀 Usage
+## 🚀 CLI Usage
 
+### For information regarding module usage : [Click Here](module_usage.md)
 ### Encrypt a File
 
 ```bash
@@ -159,7 +160,7 @@ Feel free to fork, enhance, and open issues for bugs or features.
 
 ## 🧾 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [CC BY-NC 4.0](LICENSE).
 
 ---
 
@@ -167,3 +168,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 - 📦 [NPM Package](https://www.npmjs.com/package/ahfc)
 - 🛠️ [GitHub Repository](https://github.com/axrxvm/ahfc)
+- 👀 [Discord Server](https://discord.gg/7MQczhh2pS)

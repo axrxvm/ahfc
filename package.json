@@ -1,6 +1,6 @@
 {
   "name": "ahfc", 
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Aarav Hyper Fortress Cipher (AHFC) - Powerful file encryption CLI with unbreakable logic.",
   "main": "ahfc.js",
   "bin": {
@@ -10,7 +10,7 @@
     "start": "node ahfc.js"
   },
   "author": "Aarav Mehta",
-  "license": "MIT",
+  "license": "CC BY-NC 4.0",
   "keywords": ["encryption", "cli", "aes", "argon2", "file-security", "cipher"],
   "dependencies": {
     "argon2": "^0.30.1",

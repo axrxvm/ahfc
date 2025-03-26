@@ -290,23 +290,34 @@ async function decryptFile(inputPath, outputPath) {
 
 }
 
-// Main entry point
-(async () => {
-  console.log('\n');
-  printBanner();
-  const args = process.argv.slice(2);
-  const action = args[0];
-  const input = args[1];
-  const output = args[2];
-  const mode = getModeFromArgs(args);
+if (require.main === module) {
+  // CLI Mode
+  (async () => {
+    console.log('\n');
+    printBanner();
+    const args = process.argv.slice(2);
+    const action = args[0];
+    const input = args[1];
+    const output = args[2];
+    const mode = getModeFromArgs(args);
 
-  if (action === 'encrypt') {
-    if (args.length < 3) return console.log(chalk.yellow('Usage: node ahfc.js encrypt <input> <output> [--lite|--normal|--beast]'));
-    await encryptFile(input, output, mode);
-  } else if (action === 'decrypt') {
-    if (args.length < 3) return console.log(chalk.yellow('Usage: node ahfc.js decrypt <input> <output>'));
-    await decryptFile(input, output);
-  } else {
-    console.log(chalk.red('Invalid command. Use encrypt or decrypt.'));
-  }
-})();
+    if (action === 'encrypt') {
+      if (args.length < 3) return console.log(chalk.yellow('Usage: node ahfc.js encrypt <input> <output> [--lite|--normal|--beast]'));
+      await encryptFile(input, output, mode);
+    } else if (action === 'decrypt') {
+      if (args.length < 3) return console.log(chalk.yellow('Usage: node ahfc.js decrypt <input> <output>'));
+      await decryptFile(input, output);
+    } else {
+      console.log(chalk.red('Invalid command. Use encrypt or decrypt.'));
+    }
+  })();
+}
+
+// Export functions for project-based usage
+module.exports = {
+  encryptFile,
+  decryptFile,
+  getModeFromArgs,
+  printBanner
+};
+
