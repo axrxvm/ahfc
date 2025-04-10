@@ -98,6 +98,9 @@ async function encryptFile(inputPath, outputPath, mode) {
 
   const salt = crypto.randomBytes(16);
   const key = await deriveKey(password, salt);
+  if (!fs.existsSync(inputPath)) {
+    return console.error(chalk.red(`❌ Input file not found: ${inputPath}`));
+  }
   const input = fs.readFileSync(inputPath);
   // enhanced beast
   if (mode === 'beast') {
@@ -140,6 +143,10 @@ async function encryptFile(inputPath, outputPath, mode) {
     ]);
   
     const hmac = crypto.createHmac(mode === 'beast' ? 'sha512' : 'sha256', key).update(data).digest();
+    if (fs.existsSync(outputPath)) {
+      const overwrite = await promptPassword(chalk.red(`⚠️ Output file already exists. Overwrite? (y/n): `));
+      if (overwrite.toLowerCase() !== 'y') return console.log(chalk.yellow('❌ Operation cancelled.'));
+    }
     fs.writeFileSync(outputPath, Buffer.concat([data, hmac]));
     console.log(chalk.greenBright('✅ File encrypted successfully!'));
     console.log(chalk.green(`🎉 Output written to: ${chalk.underline(outputPath)}`));
@@ -167,7 +174,10 @@ async function encryptFile(inputPath, outputPath, mode) {
 
   const data = Buffer.concat([ASCII_SIGNATURE, metaLen, metadata, salt, ...blocks]);
   const hmac = crypto.createHmac('sha256', key).update(data).digest();
-
+  if (fs.existsSync(outputPath)) {
+    const overwrite = await promptPassword(chalk.red(`⚠️ Output file already exists. Overwrite? (y/n): `));
+    if (overwrite.toLowerCase() !== 'y') return console.log(chalk.yellow('❌ Operation cancelled.'));
+  }
   fs.writeFileSync(outputPath, Buffer.concat([data, hmac]));
   console.log(chalk.greenBright('✅ File encrypted successfully!'));
   console.log(chalk.green(`🎉 Output written to: ${chalk.underline(outputPath)}`));
@@ -320,4 +330,5 @@ module.exports = {
   getModeFromArgs,
   printBanner
 };
+
 

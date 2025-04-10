@@ -1,6 +1,6 @@
 {
   "name": "ahfc", 
-  "version": "1.2.0",
+  "version": "1.2.5",
   "description": "Aarav Hyper Fortress Cipher (AHFC) - Powerful file encryption CLI with unbreakable logic.",
   "main": "ahfc.js",
   "bin": {
